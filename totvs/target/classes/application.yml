@@ -4,3 +4,20 @@ server:
 logging:
   level:
     ROOT: INFO
+    
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/totvs-startech-dev
+    username: postgres
+    password: totvs@123
+
+  jpa:
+    show-sql: true  
+    hibernate:
+      format_sql: true
+      ddl-auto: update
+      show_sql: true
+      hbm2ddl:
+        auto: "none"

@@ -10,9 +10,14 @@ import br.com.totvs.cliente.application.command.AlterarClienteCommand;
 import br.com.totvs.cliente.application.command.CriarClienteCommand;
 import br.com.totvs.cliente.model.Cliente;
 import br.com.totvs.cliente.model.Cliente.ClienteBuilder;
+import br.com.totvs.cliente.model.repository.ClienteRepository;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class ClienteApplication {
+	private final ClienteRepository repository;
+	
 	Set<Cliente> clientes = new HashSet<>();
 
 	public String criar(CriarClienteCommand criarClienteCommand) {
@@ -20,7 +25,7 @@ public class ClienteApplication {
 				.documento(criarClienteCommand.getDocumento()).endereco(criarClienteCommand.getEndereco())
 				.dataNascimento(criarClienteCommand.getDataNascimento()).build();
 
-		clientes.add(cliente);
+		repository.save(cliente);
 		
 		return cliente.getId();
 	}
