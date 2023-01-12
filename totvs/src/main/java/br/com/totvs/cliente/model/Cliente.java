@@ -21,6 +21,7 @@ public class Cliente {
 	private String documento;
 	private String endereco;
 	private Date dataNascimento;
+	private boolean ativo;
 
 	@Builder
 	private Cliente(String id, String nome, String documento, String endereco, Date dataNascimento) {
@@ -29,5 +30,15 @@ public class Cliente {
 		this.documento = documento;
 		this.endereco = endereco;
 		this.dataNascimento = dataNascimento;
+		
+		this.ativo = true;
+	}
+	
+	public void ativar() {
+		this.ativo = true;
+	}
+	
+	public void inativar() {
+		this.ativo = false;
 	}
 }

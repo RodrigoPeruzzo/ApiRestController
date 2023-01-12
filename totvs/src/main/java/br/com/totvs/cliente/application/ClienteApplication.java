@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import br.com.totvs.cliente.application.command.AlterarClienteCommand;
 import br.com.totvs.cliente.application.command.CriarClienteCommand;
 import br.com.totvs.cliente.model.Cliente;
-import br.com.totvs.cliente.model.Cliente.ClienteBuilder;
 import br.com.totvs.cliente.model.repository.ClienteRepository;
 import lombok.AllArgsConstructor;
 
@@ -17,7 +16,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ClienteApplication {
 	private final ClienteRepository repository;
-	
+
 	Set<Cliente> clientes = new HashSet<>();
 
 	public String criar(CriarClienteCommand criarClienteCommand) {
@@ -25,43 +24,32 @@ public class ClienteApplication {
 				.documento(criarClienteCommand.getDocumento()).endereco(criarClienteCommand.getEndereco())
 				.dataNascimento(criarClienteCommand.getDataNascimento()).build();
 
-		repository.save(cliente);
-		
+		this.repository.save(cliente);
+
 		return cliente.getId();
 	}
 
 	public void alterar(AlterarClienteCommand alterarClienteCommand) {
-		ClienteBuilder cliente = Cliente.builder().id(alterarClienteCommand.getId())
-				.nome(alterarClienteCommand.getNome()).endereco(alterarClienteCommand.getEndereco())
-				.dataNascimento(alterarClienteCommand.getDataNascimento());
+		Cliente cliente = Cliente.builder().id(alterarClienteCommand.getId()).nome(alterarClienteCommand.getNome())
+				.endereco(alterarClienteCommand.getEndereco()).dataNascimento(alterarClienteCommand.getDataNascimento())
+				.build();
 
-		Set<Cliente> clientesAlterados = new HashSet<>();
-
-		clientes.stream().filter(filtro -> !filtro.getId().equals(alterarClienteCommand.getId()))
-				.forEach(clienteFiltrado -> {
-					clientesAlterados.add(clienteFiltrado);
-				});
-
-		Cliente clienteAnterior = clientes.stream()
-				.filter(filtro -> filtro.getId().equals(alterarClienteCommand.getId())).findFirst().get();
-
-		clientesAlterados.add(cliente.documento(clienteAnterior.getDocumento()).build());
-	}
-
-	public void excluir(String id) {
-		Set<Cliente> clientesAlterados = new HashSet<>();
-
-		clientes.stream().filter(filtro -> !filtro.getId().equals(id)).forEach(clienteFiltrado -> {
-			clientesAlterados.add(clienteFiltrado);
-		});
+		this.repository.save(cliente);
 	}
 
 	public void ativar(String id) {
+		this.repository.findById(id).ifPresent(cliente -> {
+			cliente.ativar();
 
+			this.repository.save(cliente);
+		});
 	}
 
 	public void inativar(String id) {
+		this.repository.findById(id).ifPresent(cliente -> {
+			cliente.inativar();
 
+			this.repository.save(cliente);
+		});
 	}
-
 }
