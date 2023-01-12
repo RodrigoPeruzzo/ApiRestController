@@ -42,8 +42,8 @@ public class ClienteController {
 	}
 
 	@PostMapping(path = "/{id}/alterar")
-	public ResponseEntity<Void> alterar(@RequestBody AlterarClienteDTO clienteDTO) {
-		AlterarClienteCommand command = AlterarClienteCommand.builder().nome(clienteDTO.getNome())
+	public ResponseEntity<Void> alterar(@PathVariable String id, @RequestBody AlterarClienteDTO clienteDTO) {
+		AlterarClienteCommand command = AlterarClienteCommand.builder().id(id).nome(clienteDTO.getNome())
 				.endereco(clienteDTO.getEndereco()).dataNascimento(clienteDTO.getDataNascimento()).build();
 
 		clienteApp.alterar(command);

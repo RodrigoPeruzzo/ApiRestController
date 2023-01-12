@@ -30,11 +30,13 @@ public class ClienteApplication {
 	}
 
 	public void alterar(AlterarClienteCommand alterarClienteCommand) {
-		Cliente cliente = Cliente.builder().id(alterarClienteCommand.getId()).nome(alterarClienteCommand.getNome())
-				.endereco(alterarClienteCommand.getEndereco()).dataNascimento(alterarClienteCommand.getDataNascimento())
-				.build();
+		this.repository.findById(alterarClienteCommand.getId()).ifPresent(cliente -> {
+			cliente.setNome(alterarClienteCommand.getNome());
+			cliente.setEndereco(alterarClienteCommand.getEndereco());
+			cliente.setDataNascimento(alterarClienteCommand.getDataNascimento());
 
-		this.repository.save(cliente);
+			this.repository.save(cliente);
+		});
 	}
 
 	public void ativar(String id) {
