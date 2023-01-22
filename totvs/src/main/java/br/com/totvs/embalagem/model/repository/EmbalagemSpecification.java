@@ -7,52 +7,60 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import br.com.totvs.cliente.model.repository.ClienteView;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor(access = AcessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EmbalagemSpecification {
-	public static Specification<EmbalagemView> queContenhaDescricaoCom(String descricao){
+	public static Specification<EmbalagemView> queContenhaDescricaoCom(String descricao) {
 		return new Specification<EmbalagemView>() {
-			private static final long serialVersionUID = ;
-			
+			private static final long serialVersionUID = 1L; // REVER ESSE SERIAL, SO APARECE ESSE
+
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-				return builder,like(builder.upper(root.get("descricao")), likeTerm(descricao.trim().toUpperCase()));
-				
-			}		
+				return builder.like(builder.upper(root.get("descricao")), likeTerm(descricao.trim().toUpperCase()));
+
+			}
 		};
-		
-		
-		// ---------------------------COPIEI DO CLIENTE, ALTERAR------------------------------------------------------------
-		public static Specification<ClienteView> queContenhaDocumentoCom(String documento) {
-			return new Specification<ClienteView>() {
-				private static final long serialVersionUID = 1328568327463966463L;
 
-				public Predicate toPredicate(Root<ClienteView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-					return builder.like(builder.upper(root.get("documento")), likeTerm(documento.trim().toUpperCase()));
-				}
-			};
-		}
-		
-		
-		
-
-		public static Specification<ClienteView> queContenhaEnderecoCom(String endereco) {
-			return new Specification<ClienteView>() {
-				private static final long serialVersionUID = -2810378777392539835L;
-
-				public Predicate toPredicate(Root<ClienteView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-					return builder.like(builder.upper(root.get("endereco")), likeTerm(endereco.trim().toUpperCase()));
-				}
-			};
-		}
-
-		private static String likeTerm(String term) {
-			return new StringBuilder().append('%').append(term).append('%').toString();
-		}
-		
-	
 	}
 
+	/// ------------------------------------------------------------------------------------------------------
+	// ESTA DANDO ERRO PQ DEVE RETORNAR UM DOUBLE E O MODELO ESTAVA COMO STRING
+	/// FAZENDO O UPPER CASE
+	public static Specification<EmbalagemView> queContenhaAlturaCom(double altura) {
+		return new Specification<EmbalagemView>() {
+			// ESCREVI UM NUMERO ALEATORIO
+			private static final long serialVersionUID = 65695495292594949L;
+
+			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+				return builder.like(builder.upper(root.get("altura")), likeTerm(altura.trim().toUpperCase()));
+
+			}
+		};
+	}
+
+	public static Specification<EmbalagemView> queContenhaLarguraCom(double largura) {
+		return new Specification<EmbalagemView>() {
+			private static final long serialVersionUID = 51468465163518651L;
+
+			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+				return builder.like(builder.upper(root.get("lagura")), likeTerm(largura.trim().toUpperCase()));
+			}
+		};
+	}
+
+	public static Specification<EmbalagemView> queContenhaComprimentoCom(double comprimento) {
+		return new Specification<EmbalagemView>() {
+			private static final long serialVersionUID = 269941548916521L;
+
+			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+				return builder.like(builder.upper(root.get("lagura")), likeTerm(comprimento.trim().toUpperCase()));
+			}
+		};
+	}
+
+	private static String likeTerm(String term) {
+		return new StringBuilder().append('%').append(term).append('%').toString();
+
+	}
 }

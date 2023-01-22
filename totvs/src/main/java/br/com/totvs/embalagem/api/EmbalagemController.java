@@ -37,6 +37,7 @@ public class EmbalagemController {
 		CriarEmbalagemCommand command = CriarEmbalagemCommand.builder().descricao(embalagemDTO.getDescricao())
 				.altura(embalagemDTO.getAltura()).largura(embalagemDTO.getLargura())
 				.comprimento(embalagemDTO.getComprimento()).build;
+		
 		return embalagemApp.criar(command);
 	}
 
@@ -54,12 +55,14 @@ public class EmbalagemController {
 	@PostMapping(path = "/{id}/ativar")
 	public ResponseEntity<Void> ativar(@PathVariable String id) {
 		embalagemApp.ativar(id);
+		
 		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping(path = "/{id}/inativar")
 	public ResponseEntity<Void> inativar(@PathVariable String id) {
 		embalagemApp.inativar(id);
+		
 		return ResponseEntity.ok().build();
 	}
 
@@ -72,7 +75,5 @@ public class EmbalagemController {
 	@GetMapping(path = "/{id}")
 	public EmbalagemView getById(@PathVariable String id) {
 		return Optional.ofNullable(this.repositoryView.findById(id, EmbalagemView.class)).orElseThrow();
-
 	}
-
 }

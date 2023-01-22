@@ -5,10 +5,11 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.totvs.cliente.model.Embalagem;
+import br.com.totvs.embalagem.model.Embalagem;
 
-public class EmbalagemRepository extends JpaRepository<Embalagem, String>{
-<T> T findById(String id, Class<T> type);
-
+@Repository
+@Transactional
+public class EmbalagemRepository extends JpaRepository<Embalagem, String> {
+	<T> T findById(String id, Class<T> type);
 
 }
