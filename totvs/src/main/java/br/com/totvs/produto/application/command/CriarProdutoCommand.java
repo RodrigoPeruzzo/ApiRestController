@@ -11,5 +11,5 @@ public class CriarProdutoCommand {
 	private Tipo tipo;
 	private double peso;
 	private int vencimento;
-
+	private String embalagemId;
 }

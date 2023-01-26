@@ -1,6 +1,7 @@
-package br.com.totvs.produto.api.dto;
+package br.com.totvs.documentovenda.api.dtos;
 
-import br.com.totvs.produto.model.enums.Tipo;
+import java.util.Set;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor(staticName = "of")
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-
-public class CriarProdutoDTO {
-	private String descricao;
-	private Tipo tipo;
-	private double peso;
-	private int vencimento;
-	private String embalagemId;
+public class CriarDocumentoVendaDTO {
+	private String clienteId;
+	private Set<String> produtos;
 }

@@ -9,5 +9,4 @@ import br.com.totvs.embalagem.model.Embalagem;
 @Transactional
 public interface EmbalagemRepository extends JpaRepository<Embalagem, String> {
 	<T> T findById(String id, Class<T> type);
-
 }

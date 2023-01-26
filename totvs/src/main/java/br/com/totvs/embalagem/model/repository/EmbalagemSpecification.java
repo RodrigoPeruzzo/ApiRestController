@@ -19,10 +19,15 @@ public class EmbalagemSpecification {
 
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				return builder.like(builder.upper(root.get("descricao")), likeTerm(descricao.trim().toUpperCase()));
+
 			}
 		};
+
 	}
 
+	/// ------------------------------------------------------------------------------------------------------
+	// ESTA DANDO ERRO PQ DEVE RETORNAR UM DOUBLE E O MODELO ESTAVA COMO STRING
+	/// FAZENDO O UPPER CASE
 	public static Specification<EmbalagemView> queContenhaAlturaCom(String altura) {
 		return new Specification<EmbalagemView>() {
 
@@ -30,6 +35,7 @@ public class EmbalagemSpecification {
 
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				return builder.equal(root.get("altura"), altura);
+
 			}
 		};
 	}
@@ -39,7 +45,7 @@ public class EmbalagemSpecification {
 			private static final long serialVersionUID = 51468465163518651L;
 
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-				return builder.equal(root.get("lagura"), largura);
+				return builder.equal(root.get("largura"), largura);
 			}
 		};
 	}

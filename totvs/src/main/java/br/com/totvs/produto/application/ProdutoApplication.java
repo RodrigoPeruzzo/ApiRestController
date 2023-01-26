@@ -21,7 +21,8 @@ public class ProdutoApplication {
 	public String criar(CriarProdutoCommand criarProdutoCommand) {
 		Produto produto = Produto.builder().id(UUID.randomUUID().toString())
 				.descricao(criarProdutoCommand.getDescricao()).tipo(criarProdutoCommand.getTipo())
-				.peso(criarProdutoCommand.getPeso()).vencimento(criarProdutoCommand.getVencimento()).build();
+				.peso(criarProdutoCommand.getPeso()).vencimento(criarProdutoCommand.getVencimento())
+				.embalagemId(criarProdutoCommand.getEmbalagemId()).build();
 
 		this.repository.save(produto);
 
@@ -35,6 +36,7 @@ public class ProdutoApplication {
 			produto.setTipo(alterarProdutoCommand.getTipo());
 			produto.setPeso(alterarProdutoCommand.getPeso());
 			produto.setVencimento(alterarProdutoCommand.getVencimento());
+			produto.setEmbalagemId(alterarProdutoCommand.getEmbalagemId());
 
 			this.repository.save(produto);
 		});

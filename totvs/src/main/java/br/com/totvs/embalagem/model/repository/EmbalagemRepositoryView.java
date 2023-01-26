@@ -6,5 +6,4 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface EmbalagemRepositoryView
 		extends JpaRepository<EmbalagemView, String>, JpaSpecificationExecutor<EmbalagemView> {
 	<T> T findById(String id, Class<T> type);
-
 }

@@ -18,13 +18,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "embalagem")
 public class EmbalagemView  implements Serializable{
+	private static final long serialVersionUID = 3111538363430962910L;
 	
-	
-	private static final long serialVersionUID = 1784641278497845768L;
-
 	@Id
 	private String id;
-	
 	private String descricao;
 	private double altura;
 	private double largura;

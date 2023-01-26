@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "embalagem")
-
 public class Embalagem {
 	@Id
 	private String id;
@@ -24,7 +23,6 @@ public class Embalagem {
 
 	@Builder
 	private Embalagem(String id, String descricao, double altura, double largura, double comprimento) {
-
 		this.id = id;
 		this.descricao = descricao;
 		this.altura = altura;

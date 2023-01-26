@@ -34,7 +34,8 @@ public class ProdutoController {
 	@PostMapping
 	public String criar(@RequestBody CriarProdutoDTO produtoDTO) {
 		CriarProdutoCommand command = CriarProdutoCommand.builder().descricao(produtoDTO.getDescricao())
-				.tipo(produtoDTO.getTipo()).peso(produtoDTO.getPeso()).vencimento(produtoDTO.getVencimento()).build();
+				.tipo(produtoDTO.getTipo()).peso(produtoDTO.getPeso()).vencimento(produtoDTO.getVencimento())
+				.embalagemId(produtoDTO.getEmbalagemId()).build();
 
 		return produtoApp.criar(command);
 
@@ -43,7 +44,8 @@ public class ProdutoController {
 	@PostMapping(path = "/{id}/alterar")
 	public ResponseEntity<Void> alterar(@PathVariable String id, @RequestBody AlterarProdutoDTO produtoDTO) {
 		AlterarProdutoCommand command = AlterarProdutoCommand.builder().id(id).descricao(produtoDTO.getDescricao())
-				.tipo(produtoDTO.getTipo()).peso(produtoDTO.getPeso()).vencimento(produtoDTO.getVencimento()).build();
+				.tipo(produtoDTO.getTipo()).peso(produtoDTO.getPeso()).vencimento(produtoDTO.getVencimento())
+				.embalagemId(produtoDTO.getEmbalagemId()).build();
 
 		produtoApp.alterar(command);
 

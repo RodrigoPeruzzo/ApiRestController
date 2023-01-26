@@ -9,6 +9,7 @@ import br.com.totvs.produto.model.repository.ProdutoSpecification;
 import br.com.totvs.produto.model.repository.ProdutoView;
 import lombok.Data;
 
+@Data
 public class GetAllProdutoRequest {
 
 	private String descricao;
@@ -29,7 +30,7 @@ public class GetAllProdutoRequest {
 			if (hasText(this.descricao))
 				specs = specs.and(ProdutoSpecification.queContenhaDescricaoCom(this.descricao));
 
-			if (hasText(this.tipo.toString()))
+			if (this.tipo != null)
 				specs = specs.and(ProdutoSpecification.queContenhaTipoCom(this.tipo.toString()));
 
 			if (hasText(this.peso))

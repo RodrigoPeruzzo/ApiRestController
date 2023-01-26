@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor(staticName = "of")
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-
 public class AlterarProdutoDTO {
-
 	private String descricao;
 	private Tipo tipo;
 	private double peso;
 	private int vencimento;
-
+	private String embalagemId;
 }
