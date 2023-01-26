@@ -1,9 +1,9 @@
 package br.com.totvs.produto.application;
 
 import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
+import org.hibernate.mapping.Set;
 import org.springframework.stereotype.Service;
 
 import br.com.totvs.produto.application.command.AlterarProdutoCommand;
@@ -19,13 +19,14 @@ public class ProdutoApplication {
 	Set<Produto> produtos = new HashSet<>();
 
 	public String criar(CriarProdutoCommand criarProdutoCommand) {
-		Produto produto = Produto.builder().id(UUID.randomUUID().toString()).descricao(criarProdutoCommand.getDescricao())
-		.tipo(criarProdutoCommand.getTipo()).peso(criarProdutoCommand.getPeso()).vencimento(criarProdutoCommand.getVencimento()).build();
-		
+		Produto produto = Produto.builder().id(UUID.randomUUID().toString())
+				.descricao(criarProdutoCommand.getDescricao()).tipo(criarProdutoCommand.getTipo())
+				.peso(criarProdutoCommand.getPeso()).vencimento(criarProdutoCommand.getVencimento()).build();
+
 		this.repository.save(produto);
 
 		return produto.getId();
-				
+
 	}
 
 	public void alterar(AlterarProdutoCommand alterarProdutoCommand) {

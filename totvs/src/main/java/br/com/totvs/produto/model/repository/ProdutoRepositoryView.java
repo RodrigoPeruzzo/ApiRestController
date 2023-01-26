@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface ProdutoRepositoryView
 		extends JpaRepository<ProdutoView, String>, JpaSpecificationExecutor<ProdutoView> {
 	<T> T findById(String id, Class<T> type);
-
 }
