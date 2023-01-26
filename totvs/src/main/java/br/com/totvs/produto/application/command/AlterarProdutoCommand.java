@@ -1,5 +1,6 @@
 package br.com.totvs.produto.application.command;
 
+import br.com.totvs.produto.model.enums.Tipo;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,7 +9,7 @@ import lombok.Data;
 public class AlterarProdutoCommand {
 	private String id;
 	private String descricao;
-	private Enum tipo;
+	private Tipo tipo;
 	private double peso;
 	private int vencimento;
 

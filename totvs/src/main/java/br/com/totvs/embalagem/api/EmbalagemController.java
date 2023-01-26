@@ -36,8 +36,8 @@ public class EmbalagemController {
 	public String criar(@RequestBody CriarEmbalagemDTO embalagemDTO) {
 		CriarEmbalagemCommand command = CriarEmbalagemCommand.builder().descricao(embalagemDTO.getDescricao())
 				.altura(embalagemDTO.getAltura()).largura(embalagemDTO.getLargura())
-				.comprimento(embalagemDTO.getComprimento()).build;
-		
+				.comprimento(embalagemDTO.getComprimento()).build();
+
 		return embalagemApp.criar(command);
 	}
 
@@ -45,7 +45,7 @@ public class EmbalagemController {
 	public ResponseEntity<Void> alterar(@PathVariable String id, @RequestBody AlterarEmbalagemDTO embalagemDTO) {
 		AlterarEmbalagemCommand command = AlterarEmbalagemCommand.builder().id(id)
 				.descricao(embalagemDTO.getDescricao()).altura(embalagemDTO.getAltura())
-				.largura(embalagemDTO.getLargura()).comprimento(embalagemDTO.getComprimento()).build;
+				.largura(embalagemDTO.getLargura()).comprimento(embalagemDTO.getComprimento()).build();
 
 		embalagemApp.alterar(command);
 
@@ -55,14 +55,14 @@ public class EmbalagemController {
 	@PostMapping(path = "/{id}/ativar")
 	public ResponseEntity<Void> ativar(@PathVariable String id) {
 		embalagemApp.ativar(id);
-		
+
 		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping(path = "/{id}/inativar")
 	public ResponseEntity<Void> inativar(@PathVariable String id) {
 		embalagemApp.inativar(id);
-		
+
 		return ResponseEntity.ok().build();
 	}
 

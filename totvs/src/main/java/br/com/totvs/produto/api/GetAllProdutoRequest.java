@@ -1,23 +1,24 @@
 package br.com.totvs.produto.api;
 
+import static org.springframework.util.StringUtils.hasText;
+
 import org.springframework.data.jpa.domain.Specification;
 
-import br.com.totvs.cliente.model.repository.ClienteView;
+import br.com.totvs.produto.model.enums.Tipo;
 import br.com.totvs.produto.model.repository.ProdutoSpecification;
 import br.com.totvs.produto.model.repository.ProdutoView;
 import lombok.Data;
 
-@Data
 public class GetAllProdutoRequest {
 
 	private String descricao;
-	private Enum tipo;
-	private double peso;
-	private int vencimento;
+	private Tipo tipo;
+	private String peso;
+	private String vencimento;
 	private String searchTerm;
 
 	public Specification<ProdutoView> buildSpecification() {
-		Specification<ClienteView> specs = Specification.where(null);
+		Specification<ProdutoView> specs = Specification.where(null);
 
 		if (hasText(this.searchTerm)) {
 			specs = specs.or(ProdutoSpecification.queContenhaDescricaoCom(this.searchTerm));
@@ -28,19 +29,15 @@ public class GetAllProdutoRequest {
 			if (hasText(this.descricao))
 				specs = specs.and(ProdutoSpecification.queContenhaDescricaoCom(this.descricao));
 
-			if (hasText(this.tipo))
-				specs = specs.and(ProdutoSpecification.queContenhaTipoCom(this.tipo));
+			if (hasText(this.tipo.toString()))
+				specs = specs.and(ProdutoSpecification.queContenhaTipoCom(this.tipo.toString()));
 
 			if (hasText(this.peso))
 				specs = specs.and(ProdutoSpecification.queContenhaPesoCom(this.peso));
 
 			if (hasText(this.vencimento))
-				specs = specs.and(ProdutoSpecification.queContenhaVencimento(this.vencimento));
-
+				specs = specs.and(ProdutoSpecification.queContenhaVencimentoCom(this.vencimento));
 		}
-
 		return specs;
-
 	}
-
 }

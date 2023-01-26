@@ -22,35 +22,35 @@ public class ProdutoSpecification {
 		};
 	}
 
-	public static Specification<ProdutoView> queContenhaAlturaCom(double altura) {
+	public static Specification<ProdutoView> queContenhaTipoCom(String tipo) {
 		return new Specification<ProdutoView>() {
 
 			private static final long serialVersionUID = 7175920697682698943L;
 
 			public Predicate toPredicate(Root<ProdutoView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-				return builder.equal(root.get("altura"), altura);
+				return builder.equal(root.get("tipo"), tipo);
 			}
 		};
 	}
 
-	public static Specification<ProdutoView> queContenhaLarguraCom(double largura) {
+	public static Specification<ProdutoView> queContenhaPesoCom(String peso) {
 		return new Specification<ProdutoView>() {
 
 			private static final long serialVersionUID = 1654654864778648694L;
 
 			public Predicate toPredicate(Root<ProdutoView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-				return builder.equal(root.get("largura"),largura);
+				return builder.equal(root.get("peso"), peso);
 			}
 		};
 	}
 
-	public static Specification<ProdutoView> queContenhaComprimentoCom(double comprimento) {
+	public static Specification<ProdutoView> queContenhaVencimentoCom(String vencimento) {
 		return new Specification<ProdutoView>() {
 
 			private static final long serialVersionUID = 6498789494494193215L;
 
 			public Predicate toPredicate(Root<ProdutoView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-				return builder.equal(root.get("comprimento"), comprimento);
+				return builder.equal(root.get("vencimento"), vencimento);
 
 			}
 		};
@@ -59,6 +59,5 @@ public class ProdutoSpecification {
 	private static String likeTerm(String term) {
 		return new StringBuilder().append('%').append(term).append('%').toString();
 	}
-
 
 }

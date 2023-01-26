@@ -1,10 +1,10 @@
 package br.com.totvs.produto.api;
 
-import java.awt.print.Pageable;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +29,7 @@ public class ProdutoController {
 
 	@Autowired
 	ProdutoApplication produtoApp;
-	private final ProdutoRepositoryView repositoryview;
+	private final ProdutoRepositoryView repositoryView;
 
 	@PostMapping
 	public String criar(@RequestBody CriarProdutoDTO produtoDTO) {
@@ -59,13 +59,12 @@ public class ProdutoController {
 
 	@GetMapping
 	public Page<ProdutoView> getAll(GetAllProdutoRequest filterRequest, Pageable pageable) {
-
-		return this.repositoryview.findAll(filterRequest.buildSpecification(), pageable);
+		return this.repositoryView.findAll(filterRequest.buildSpecification(), pageable);
 	}
 
 	@GetMapping(path = "/{id}")
-	public Optional<ProdutoView> getById(@PathVariable String id) {
-		return Optional.ofNullable(this.repositoryview.findById(id, ProdutoView.class));
+	public ProdutoView getById(@PathVariable String id) {
+		return Optional.ofNullable(this.repositoryView.findById(id, ProdutoView.class)).orElseThrow();
 
 	}
 

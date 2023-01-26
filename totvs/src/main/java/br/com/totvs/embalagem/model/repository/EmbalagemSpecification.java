@@ -19,43 +19,37 @@ public class EmbalagemSpecification {
 
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				return builder.like(builder.upper(root.get("descricao")), likeTerm(descricao.trim().toUpperCase()));
-
 			}
 		};
-
 	}
 
-	/// ------------------------------------------------------------------------------------------------------
-	// ESTA DANDO ERRO PQ DEVE RETORNAR UM DOUBLE E O MODELO ESTAVA COMO STRING
-	/// FAZENDO O UPPER CASE
-	public static Specification<EmbalagemView> queContenhaAlturaCom(double altura) {
+	public static Specification<EmbalagemView> queContenhaAlturaCom(String altura) {
 		return new Specification<EmbalagemView>() {
 
 			private static final long serialVersionUID = 5973145312862851256L;
 
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-				return builder.like(builder.upper(root.get("altura")), likeTerm(altura.trim().toUpperCase()));
-
+				return builder.equal(root.get("altura"), altura);
 			}
 		};
 	}
 
-	public static Specification<EmbalagemView> queContenhaLarguraCom(double largura) {
+	public static Specification<EmbalagemView> queContenhaLarguraCom(String largura) {
 		return new Specification<EmbalagemView>() {
 			private static final long serialVersionUID = 51468465163518651L;
 
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-				return builder.like(builder.upper(root.get("lagura")), likeTerm(largura.trim().toUpperCase()));
+				return builder.equal(root.get("lagura"), largura);
 			}
 		};
 	}
 
-	public static Specification<EmbalagemView> queContenhaComprimentoCom(double comprimento) {
+	public static Specification<EmbalagemView> queContenhaComprimentoCom(String comprimento) {
 		return new Specification<EmbalagemView>() {
 			private static final long serialVersionUID = 269941548916521L;
 
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-				return builder.like(builder.upper(root.get("lagura")), likeTerm(comprimento.trim().toUpperCase()));
+				return builder.equal(root.get("comprimento"), comprimento);
 			}
 		};
 	}

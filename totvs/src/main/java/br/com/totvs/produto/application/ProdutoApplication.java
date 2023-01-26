@@ -1,9 +1,9 @@
 package br.com.totvs.produto.application;
 
 import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
-import org.hibernate.mapping.Set;
 import org.springframework.stereotype.Service;
 
 import br.com.totvs.produto.application.command.AlterarProdutoCommand;
@@ -30,7 +30,7 @@ public class ProdutoApplication {
 	}
 
 	public void alterar(AlterarProdutoCommand alterarProdutoCommand) {
-		this.repository.findById(alterarProdutoCommand.getId()).ifPresent(cliente -> {
+		this.repository.findById(alterarProdutoCommand.getId()).ifPresent(produto -> {
 			produto.setDescricao(alterarProdutoCommand.getDescricao());
 			produto.setTipo(alterarProdutoCommand.getTipo());
 			produto.setPeso(alterarProdutoCommand.getPeso());

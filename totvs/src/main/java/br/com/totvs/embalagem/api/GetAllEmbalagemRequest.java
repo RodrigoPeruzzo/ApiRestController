@@ -1,5 +1,7 @@
 package br.com.totvs.embalagem.api;
 
+import static org.springframework.util.StringUtils.hasText;
+
 import org.springframework.data.jpa.domain.Specification;
 
 import br.com.totvs.embalagem.model.repository.EmbalagemSpecification;
@@ -8,9 +10,9 @@ import br.com.totvs.embalagem.model.repository.EmbalagemView;
 public class GetAllEmbalagemRequest {
 
 	private String descricao;
-	private double altura;
-	private double largura;
-	private double comprimento;
+	private String altura;
+	private String largura;
+	private String comprimento;
 	private String searchTerm;
 
 	public Specification<EmbalagemView> buildSpecification() {

@@ -1,5 +1,6 @@
 package br.com.totvs.produto.api.dto;
 
+import br.com.totvs.produto.model.enums.Tipo;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,9 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 
 public class AlterarProdutoDTO {
-	
+
 	private String descricao;
-	private Enum tipo;
+	private Tipo tipo;
 	private double peso;
 	private int vencimento;
 
