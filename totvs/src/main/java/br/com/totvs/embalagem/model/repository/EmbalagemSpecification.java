@@ -14,7 +14,8 @@ import lombok.NoArgsConstructor;
 public class EmbalagemSpecification {
 	public static Specification<EmbalagemView> queContenhaDescricaoCom(String descricao) {
 		return new Specification<EmbalagemView>() {
-			private static final long serialVersionUID = 1L; // REVER ESSE SERIAL, SO APARECE ESSE
+
+			private static final long serialVersionUID = -524071530098183050L;
 
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				return builder.like(builder.upper(root.get("descricao")), likeTerm(descricao.trim().toUpperCase()));
@@ -29,8 +30,8 @@ public class EmbalagemSpecification {
 	/// FAZENDO O UPPER CASE
 	public static Specification<EmbalagemView> queContenhaAlturaCom(double altura) {
 		return new Specification<EmbalagemView>() {
-			// ESCREVI UM NUMERO ALEATORIO
-			private static final long serialVersionUID = 65695495292594949L;
+
+			private static final long serialVersionUID = 5973145312862851256L;
 
 			public Predicate toPredicate(Root<EmbalagemView> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				return builder.like(builder.upper(root.get("altura")), likeTerm(altura.trim().toUpperCase()));

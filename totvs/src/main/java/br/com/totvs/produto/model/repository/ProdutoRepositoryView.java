@@ -1,5 +1,12 @@
 package br.com.totvs.produto.model.repository;
 
-public class ProdutoRepositoryView {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProdutoRepositoryView
+		extends JpaRepository<ProdutoView, String>, JpaSpecificationExecutor<ProdutoView> {
+	<T> T findById(String id, Class<T> type);
 
 }

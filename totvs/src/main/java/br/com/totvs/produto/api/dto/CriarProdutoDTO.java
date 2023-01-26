@@ -15,6 +15,6 @@ public class CriarProdutoDTO {
 	private String descricao;
 	private Enum tipo;
 	private double peso;
-	private int vencimento;	
+	private int vencimento;
 
 }

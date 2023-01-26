@@ -2,6 +2,7 @@ package br.com.totvs.produto.application;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,12 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-
 public class ProdutoApplication {
 	private final ProdutoRepository repository;
 	Set<Produto> produtos = new HashSet<>();
 
 	public String criar(CriarProdutoCommand criarProdutoCommand) {
-		Produto produto = Produto.builder().id(UUID,randomUUID()).toString()).descricao(criarProdutoCommand.getDescricao())
+		Produto produto = Produto.builder().id(UUID.randomUUID().toString()).descricao(criarProdutoCommand.getDescricao())
 		.tipo(criarProdutoCommand.getTipo()).peso(criarProdutoCommand.getPeso()).vencimento(criarProdutoCommand.getVencimento()).build();
 		
 		this.repository.save(produto);
@@ -30,7 +30,6 @@ public class ProdutoApplication {
 
 	public void alterar(AlterarProdutoCommand alterarProdutoCommand) {
 		this.repository.findById(alterarProdutoCommand.getId()).ifPresent(cliente -> {
-
 			produto.setDescricao(alterarProdutoCommand.getDescricao());
 			produto.setTipo(alterarProdutoCommand.getTipo());
 			produto.setPeso(alterarProdutoCommand.getPeso());

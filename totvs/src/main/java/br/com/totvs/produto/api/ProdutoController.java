@@ -63,9 +63,9 @@ public class ProdutoController {
 		return this.repositoryview.findAll(filterRequest.buildSpecification(), pageable);
 	}
 
-	@GetMapping(path = "{id}")
-	public ProdutoView getById(@PathVariable String id) {
-		return Optional.ofNullable(this.repositoryview.findById(id, ProdutoView.class)).orElseThrow();
+	@GetMapping(path = "/{id}")
+	public Optional<ProdutoView> getById(@PathVariable String id) {
+		return Optional.ofNullable(this.repositoryview.findById(id, ProdutoView.class));
 
 	}
 
