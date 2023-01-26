@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.totvs.produto.model.enums.Tipo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,8 +25,8 @@ public class ProdutoView implements Serializable {
 	@Id
 	private String id;
 	private String descricao;
-	private double altura;
-	private double largura;
-	private double comprimento;
+	private double peso;
+	private int vencimento;
+	private Tipo tipo;
 
 }

@@ -51,6 +51,7 @@ public class EmbalagemController {
 
 		return ResponseEntity.ok().build();
 	}
+	
 
 	@PostMapping(path = "/{id}/ativar")
 	public ResponseEntity<Void> ativar(@PathVariable String id) {

@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class EmbalagemView  implements Serializable{
 	
 	
-	private static final long serialVersionUID = 16846468446845768L;
+	private static final long serialVersionUID = 1784641278497845768L;
 
 	@Id
 	private String id;

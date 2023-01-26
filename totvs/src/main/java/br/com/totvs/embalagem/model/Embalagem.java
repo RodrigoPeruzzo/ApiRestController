@@ -1,6 +1,7 @@
 package br.com.totvs.embalagem.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Builder;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "embalagem")
 
 public class Embalagem {
-
+	@Id
 	private String id;
 	private String descricao;
 	private double altura;
