@@ -3,12 +3,14 @@ package br.com.totvs.documentovenda.repository;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -16,7 +18,6 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import br.com.totvs.cliente.model.repository.ClienteView;
-import br.com.totvs.produto.model.repository.ProdutoView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,8 +40,7 @@ public class DocumentoVendaView implements Serializable {
 	@JoinColumn(name = "clienteId", referencedColumnName = "id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), insertable = false, updatable = false)
 	private ClienteView cliente;
 
-	@ManyToMany
-	@NotFound(action = NotFoundAction.IGNORE)
-	@JoinColumn(name = "produtoId", referencedColumnName = "id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), insertable = false, updatable = false)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "documentoVendaId")
 	private Set<DocumentoVendaProdutoView> produtos;
 }

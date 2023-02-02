@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/v1/documentosvenda")
+@RequestMapping(path = "/api/v1/documentosVenda")
 public class DocumentoVendaController {
 	@Autowired
 	DocumentoVendaApplication documentoVendaApp;

@@ -16,6 +16,4 @@ public class CriarEmbalagemDTO {
 	private double altura;
 	private double largura;
 	private double comprimento;
-	
-
 }

@@ -37,8 +37,6 @@ public class DocumentoVenda {
 	private DocumentoVenda(String id, String clienteId, Set<DocumentoVendaProduto> produtos) {
 		this.id = id;
 		this.clienteId = clienteId;
-		if (produtos.isEmpty())
-			produtos = new HashSet<>();
 		this.produtos = produtos;
 	}
 }

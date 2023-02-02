@@ -1,5 +1,7 @@
 package br.com.totvs.documentovenda.application;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -18,13 +20,22 @@ public class DocumentoVendaApplication {
 	public String criar(CriarDocumentoVendaCommand criarDocumentoVendaCommand) {
 		String id = UUID.randomUUID().toString();
 
-		DocumentoVenda documentoVenda = DocumentoVenda
-				.builder().id(id).clienteId(criarDocumentoVendaCommand.getClienteId()).produtos(DocumentoVendaProduto
-						.builder().documentoVendaId(id).produtos(criarDocumentoVendaCommand.getProdutos()).build())
-				.build();
+		DocumentoVenda documentoVenda = DocumentoVenda.builder().id(id)
+				.clienteId(criarDocumentoVendaCommand.getClienteId())
+				.produtos(retornaListaProdutos(id, criarDocumentoVendaCommand.getProdutos())).build();
 
 		this.repository.save(documentoVenda);
 
 		return documentoVenda.getId();
+	}
+
+	private Set<DocumentoVendaProduto> retornaListaProdutos(String id, Set<String> produtos) {
+		Set<DocumentoVendaProduto> produtosDocumento = new HashSet<>();
+
+		produtos.stream().forEach(produto -> {
+			produtosDocumento.add(DocumentoVendaProduto.of(id, produto));
+		});
+
+		return produtosDocumento;
 	}
 }
