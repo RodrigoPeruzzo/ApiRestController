@@ -21,9 +21,10 @@ public class DocumentoVendaApplication {
 		String id = UUID.randomUUID().toString();
 
 		DocumentoVenda documentoVenda = DocumentoVenda.builder().id(id)
-				.clienteId(criarDocumentoVendaCommand.getClienteId())
-				.produtos(retornaListaProdutos(id, criarDocumentoVendaCommand.getProdutos())).build();
+				.clienteId(criarDocumentoVendaCommand.getClienteId()).build();
 
+		documentoVenda.patchProdutos(retornaListaProdutos(id, criarDocumentoVendaCommand.getProdutos()));
+		
 		this.repository.save(documentoVenda);
 
 		return documentoVenda.getId();
@@ -33,7 +34,7 @@ public class DocumentoVendaApplication {
 		Set<DocumentoVendaProduto> produtosDocumento = new HashSet<>();
 
 		produtos.stream().forEach(produto -> {
-			produtosDocumento.add(DocumentoVendaProduto.of(id, produto));
+			produtosDocumento.add(DocumentoVendaProduto.of(produto, id));
 		});
 
 		return produtosDocumento;

@@ -19,10 +19,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "documento_venda_produto")
 public class DocumentoVendaProduto {
 	@Id
-	private String documentoVendaId;
+	private String produtoId;
 
 	@Id
-	private String id;
+	private String documentoVendaId;
 
 	@Override
 	public boolean equals(Object obj) {
@@ -33,11 +33,11 @@ public class DocumentoVendaProduto {
 		if (getClass() != obj.getClass())
 			return false;
 		DocumentoVendaProduto other = (DocumentoVendaProduto) obj;
-		return Objects.equals(id, other.id) && Objects.equals(documentoVendaId, other.documentoVendaId);
+		return Objects.equals(produtoId, other.produtoId) && Objects.equals(documentoVendaId, other.documentoVendaId);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, documentoVendaId);
+		return Objects.hash(produtoId, documentoVendaId);
 	}
 }

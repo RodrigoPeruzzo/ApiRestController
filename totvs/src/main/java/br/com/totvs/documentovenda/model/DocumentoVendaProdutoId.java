@@ -6,9 +6,9 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
 public class DocumentoVendaProdutoId implements Serializable {
-	private static final long serialVersionUID = 8341700864314305320L;
+	private static final long serialVersionUID = -7630581546603580978L;
 
-	private String id;
+	private String produtoId;
 
 	private String documentoVendaId;
 }

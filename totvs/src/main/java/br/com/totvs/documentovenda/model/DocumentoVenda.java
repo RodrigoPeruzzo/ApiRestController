@@ -1,18 +1,17 @@
 package br.com.totvs.documentovenda.model;
 
+import static java.util.function.Predicate.not;
+import static javax.persistence.FetchType.EAGER;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.ConstraintMode;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import lombok.Builder;
 import lombok.Data;
@@ -28,15 +27,19 @@ public class DocumentoVenda {
 
 	private String clienteId;
 
-	@OneToMany
-	@NotFound(action = NotFoundAction.IGNORE)
-	@JoinColumn(name = "documentoVendaId", referencedColumnName = "id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), insertable = false, updatable = false)
-	private Set<DocumentoVendaProduto> produtos = new HashSet<>();
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = EAGER)
+	@JoinColumn(name = "documentoVendaId", nullable = false, insertable = false, updatable = false)
+	private Set<DocumentoVendaProduto> produtos;
 
 	@Builder
-	private DocumentoVenda(String id, String clienteId, Set<DocumentoVendaProduto> produtos) {
+	private DocumentoVenda(String id, String clienteId) {
 		this.id = id;
 		this.clienteId = clienteId;
-		this.produtos = produtos;
+		this.produtos = new HashSet<>();
+	}
+
+	public void patchProdutos(Set<DocumentoVendaProduto> produtos) {
+		this.produtos.removeIf(not(produtos::contains));
+		this.produtos.addAll(produtos);
 	}
 }

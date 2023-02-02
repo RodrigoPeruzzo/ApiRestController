@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class DocumentoVendaProdutoView {
 	@Id
 	@JsonIgnore
-	private String id;
+	private String produtoId;
 
 	@Id
 	@JsonIgnore
@@ -34,7 +34,7 @@ public class DocumentoVendaProdutoView {
 
 	@OneToOne
 	@NotFound(action = NotFoundAction.IGNORE)
-	@JoinColumn(name = "produto_id", referencedColumnName = "id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), insertable = false, updatable = false)
+	@JoinColumn(name = "produtoId", referencedColumnName = "id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT), insertable = false, updatable = false)
 	@JsonUnwrapped
 	private ProdutoView produto;
 }
