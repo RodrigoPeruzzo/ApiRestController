@@ -28,16 +28,16 @@ public class GetAllProdutoRequest {
 			specs = specs.or(ProdutoSpecification.queContenhaVencimentoCom(this.searchTerm));
 		} else {
 			if (hasText(this.descricao))
-				specs = specs.and(ProdutoSpecification.queContenhaDescricaoCom(this.descricao));
+				specs = specs.and(ProdutoSpecification.queContenhaDescricaoCom(this.descricao.toString()));
 
 			if (this.tipo != null)
 				specs = specs.and(ProdutoSpecification.queContenhaTipoCom(this.tipo.toString()));
 
 			if (hasText(this.peso))
-				specs = specs.and(ProdutoSpecification.queContenhaPesoCom(this.peso));
+				specs = specs.and(ProdutoSpecification.queContenhaPesoCom(this.peso.toString()));
 
 			if (hasText(this.vencimento))
-				specs = specs.and(ProdutoSpecification.queContenhaVencimentoCom(this.vencimento));
+				specs = specs.and(ProdutoSpecification.queContenhaVencimentoCom(this.vencimento.toString()));
 		}
 		return specs;
 	}

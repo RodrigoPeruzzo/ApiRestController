@@ -26,7 +26,7 @@ public class GetAllEmbalagemRequest {
 			if (hasText(this.descricao))
 				specs = specs.and(EmbalagemSpecification.queContenhaDescricaoCom(this.descricao));
 			if (hasText(this.altura))
-				specs = specs.and(EmbalagemSpecification.queContenhaLarguraCom(this.altura));
+				specs = specs.and(EmbalagemSpecification.queContenhaAlturaCom(this.altura));
 			if (hasText(this.largura))
 				specs = specs.and(EmbalagemSpecification.queContenhaLarguraCom(this.largura));
 			if (hasText(this.comprimento))
