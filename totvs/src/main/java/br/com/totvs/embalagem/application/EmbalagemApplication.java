@@ -35,7 +35,7 @@ public class EmbalagemApplication {
 			embalagem.setDescricao(alterarEmbalagemCommand.getDescricao());
 			embalagem.setAltura(alterarEmbalagemCommand.getAltura());
 			embalagem.setLargura(alterarEmbalagemCommand.getLargura());
-			embalagem.setComprimento(alterarEmbalagemCommand.getComprimento());
+			embalagem.setDescricao(alterarEmbalagemCommand.getDescricao());
 
 			this.repository.save(embalagem);
 

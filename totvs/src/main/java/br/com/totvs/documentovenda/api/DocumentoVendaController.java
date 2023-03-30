@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.totvs.documentovenda.api.dtos.DocumentoVendaDTO;
+import br.com.totvs.documentovenda.api.dtos.CriarDocumentoVendaDTO;
 import br.com.totvs.documentovenda.application.DocumentoVendaApplication;
-import br.com.totvs.documentovenda.application.command.AlterarDocumentoVendaCommand;
 import br.com.totvs.documentovenda.application.command.CriarDocumentoVendaCommand;
 import br.com.totvs.documentovenda.repository.DocumentoVendaRepositoryView;
 import br.com.totvs.documentovenda.repository.DocumentoVendaView;
@@ -29,19 +28,11 @@ public class DocumentoVendaController {
 	private final DocumentoVendaRepositoryView repositoryView;
 
 	@PostMapping
-	public String criar(@RequestBody DocumentoVendaDTO documentoVendaDTO) {
+	public String criar(@RequestBody CriarDocumentoVendaDTO documentoVendaDTO) {
 		CriarDocumentoVendaCommand command = CriarDocumentoVendaCommand.builder()
 				.clienteId(documentoVendaDTO.getClienteId()).produtos(documentoVendaDTO.getProdutos()).build();
 
 		return documentoVendaApp.criar(command);
-	}
-
-	@PostMapping("/{id}/alterar")
-	public String alterar(@RequestBody DocumentoVendaDTO documentoVendaDTO) {
-		AlterarDocumentoVendaCommand command = AlterarDocumentoVendaCommand.builder()
-				.clienteId(documentoVendaDTO.getClienteId()).produtos(documentoVendaDTO.getProdutos()).build();
-
-		return documentoVendaApp.alterar(command);
 	}
 
 	@GetMapping
