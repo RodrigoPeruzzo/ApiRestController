@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import br.com.totvs.documentovenda.application.command.AlterarDocumentoVendaCommand;
 import br.com.totvs.documentovenda.application.command.CriarDocumentoVendaCommand;
 import br.com.totvs.documentovenda.model.DocumentoVenda;
 import br.com.totvs.documentovenda.model.DocumentoVendaProduto;
@@ -24,10 +25,22 @@ public class DocumentoVendaApplication {
 				.clienteId(criarDocumentoVendaCommand.getClienteId()).build();
 
 		documentoVenda.patchProdutos(retornaListaProdutos(id, criarDocumentoVendaCommand.getProdutos()));
-		
+
 		this.repository.save(documentoVenda);
 
 		return documentoVenda.getId();
+	}
+
+	public String alterar(AlterarDocumentoVendaCommand alterarDocumentoVendaCommand) {
+		String id = UUID.randomUUID().toString();
+
+		DocumentoVenda documentoVenda = DocumentoVenda.builder().id(id)
+				.clienteId(alterarDocumentoVendaCommand.getClienteId()).build();
+
+		documentoVenda.patchProdutos(retornaListaProdutos(id, alterarDocumentoVendaCommand.getProdutos()));
+		this.repository.save(documentoVenda);
+		return documentoVenda.getId();
+
 	}
 
 	private Set<DocumentoVendaProduto> retornaListaProdutos(String id, Set<String> produtos) {
